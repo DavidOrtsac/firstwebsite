@@ -1,0 +1,66 @@
+<% if user_signed_in? %>
+
+
+<style type="text/css">
+   body { background: rgba(244, 244, 244, 0.8) } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
+
+<style>
+a {
+  text-decoration: none;
+}
+
+.test { border-radius: 25px; }
+
+</style>
+
+<div class="bg-white p-5 m-5 rounded-5 shadow">
+<table class="table table-striped table-hover">
+  <thead class="table-light">
+    <tr>
+      <th class="text-center">Title</th>
+      <th class="text-center">Due Date</th>
+      <th class="text-center">Category</th>
+      <th class="text-center">Subject</th>
+      <th class="text-center">Status</th>
+      <th class="text-center">User ID</th>
+      <th class="text-center"> Actions </th>
+    </tr>
+  </thead>
+
+<tbody>
+  <% @homeworks.each do |homework| %>
+
+  <tr>
+    <% if homework.user == current_user %>
+    <td class="text-center">
+    <%= link_to homework.title, homework %>
+    </td> 
+  <% else %>
+  <td class="text-center"><%= homework.title %></td>
+  <% end %>
+
+  <td class="text-center"><%= homework.due_date %></td>
+  <td class="text-center"><%= homework.category %></td>
+  <td class="text-center"><%= homework.subject %></td>
+  <td class="text-center"><%= homework.status %></td>
+  <td class="text-center"><%= homework.user_id %></td>
+
+  <% if homework.user == current_user %>
+  <td class="text-center"><%= link_to 'Details', homework, class: "btn btn-primary btn-sm d-flex justify-content-center align-items-center" %></td>
+  <% else %>
+  <td></td>
+  <% end %>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+<br/>
+<%= link_to "New assignment", new_homework_path, class: "btn btn-secondary" %>
+</div>
+
+<br/>
+
+<% else %>
+    <h1> You are not logged in. </h1>
+<% end %>

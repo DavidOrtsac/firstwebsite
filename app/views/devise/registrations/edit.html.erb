@@ -1,0 +1,50 @@
+<style type="text/css">
+   body { background: rgba(244, 244, 244, 0.8) } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
+
+<div class="align-items-center justify-content-center mx-auto w-50 bg-white p-5 m-5 rounded-5 shadow">
+
+  <h2 class="text-center fw-bold">Edit <%= resource_name.to_s.humanize %></h2>
+  <br/>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="form-floating mb-3">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control bg-light rounded-4", placeholder: "Email" %>
+    <%= f.label :email, class: "form-label" %>
+  </div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="form-floating mb-3">
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control bg-light rounded-4", placeholder: "Current Password" %>
+      <%= f.label :current_password %>
+    </div>
+
+    <div class="form-floating mb-3">
+      <%= f.password_field :password_confirmation, autocomplete: "confirm-password", class: "form-control bg-light rounded-4", placeholder: "Confirm Password" %>
+      <%= f.label :password_confirmation %>
+    </div>
+
+
+    <div class="form-floating mb-3">
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control bg-light rounded-4", placeholder: "New Password"  %>
+      <%= f.label :password, "New Password (6 characters minimum)" %>
+      <% if @minimum_password_length %>
+        <br />
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+
+    <div class="btn-toolbar">
+      <div class="btn-group me-2" role="group" aria-label="First group">
+    <%= f.submit "Update", class: "btn btn-success" %> <br/>
+  <% end %>
+  <div class="btn-group me-2" role="group" aria-label="First group">
+  <%= button_to "Delete your account", registration_path(resource_name), class: "btn btn-outline-danger", data: { confirm: "Are you sure?" }, method: :delete %>
+    </div>
+    </div>
+    </div>
+  <%= link_to "Back", :back %>
+</div>

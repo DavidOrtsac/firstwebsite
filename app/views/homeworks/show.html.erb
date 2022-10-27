@@ -1,0 +1,29 @@
+<style type="text/css">
+   body { background: rgba(244, 244, 244, 0.8) } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<div class="bg-dark p-5 text-light rounded-5 m-3">
+
+
+  <h1 class="display-4"><%= @homework.title %></h1>
+  <p class="lead">Subject: <%= @homework.subject %></p>
+  <p class="lead">Due: <%= @homework.due_date %></p>
+  <p class="lead">Category: <%= @homework.category %></p>
+  <p class="lead">Status: <span class="badge text-bg-secondary"> <%= @homework.status %> </span> </p>
+  <p>Notes:</p>
+  <textarea class="form-control bg-light rounded-4" id="exampleFormControlTextarea1" rows="5"></textarea>
+  <br/>
+  <br/>
+
+<div class="btn-toolbar" role="toolbar">
+  <div class="btn-group me-2" role="group">
+    <%= link_to "Edit this module", edit_homework_path(@homework), class: "btn btn-outline-primary" %> 
+    <%= link_to "Back to assignments", homeworks_path, class: "btn btn-outline-light" %>
+  </div>
+  <br/>
+  <div class="pull-right">
+      <%= button_to "Delete", @homework, method: :delete, class: "btn btn-outline-danger pull-right" %>
+  </div>
+</div>
+</div>
